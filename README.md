@@ -6,6 +6,7 @@ GIFはデジタル庁が公開するデータの連携・交換のためのデ�
 https://www.digital.go.jp/policies/data_strategy_government_interoperability_framework/
 
 ※GIFの読み方はジー・アイ・エフです。
+
 ※GIFに関連するツールについては、準備でき次第当該リポジトリにて公開予定となります。
 
 ## GIFの公開リポジトリにおけるご意見、資材変更の扱いについて

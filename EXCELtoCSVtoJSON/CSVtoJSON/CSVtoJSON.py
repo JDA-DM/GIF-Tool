@@ -5,13 +5,18 @@ import sys
 import pandas as pd
 
 args = sys.argv
-csv_file_path = args[1]
+files = args[1:]
 
-if not os.path.isfile(csv_file_path):
-    print("引数のファイルが存在しません")
-    exit
+for file in files:
 
-df = pd.read_csv(csv_file_path, header=0, index_col=0)
-json_fields = df.to_json(orient='table', force_ascii=False)
-file_name = os.path.splitext(os.path.basename(csv_file_path))
-print(json.dumps(json.loads(json_fields), indent=2, ensure_ascii=False))
+    df = pd.read_csv(file, header=0, index_col=0)
+    json_fields = df.to_json(orient='table', force_ascii=False)
+    file_name = os.path.splitext(os.path.basename(file))[0]
+    json_data = json.loads(json_fields)
+    result = {}
+    result['name'] = file_name
+    result['items'] = json_data['data']
+    file_path = './' + file_name + '.json'
+
+    with open(file_path, 'w') as f:
+        json.dump(result, f,  indent=2, ensure_ascii=False)
